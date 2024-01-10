@@ -1,0 +1,39 @@
+# Add file types and directories in here that aren't to be tracked by git
+
+# Files to specifically include whose types are excluded
+
+# The below sequence of 3 lines will allow files without extensions to be ignored
+*
+!*/
+!*.*
+
+*.pdf
+*.png
+*.jpg
+*.eps
+*.ps
+
+*.dSYM
+
+# MATLAB-RELATED FILES
+*.m~
+*.fig
+*.mat
+
+*.txt
+*.DS_store
+
+# LATEX-RELATED FILES
+*.dvi
+*.brf 
+*.aux
+*.log
+*.gz
+#*.out
+*.toc
+*.thm
+*.blg
+*.bak
+*.sav
+*.bbl
+*.pag

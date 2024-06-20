@@ -20,6 +20,8 @@ classdef one_step_st_system < handle
                         % Requires the fields:
                         %    cf.           INT.    The number determining which the CF-splitting, needs to be bigger than 1. Every cf-th point, starting at 1, is a C-point.
                         %    relax_scheme. STRING. CF-based relaxation scheme, e.g., 'F', 'FCF', 'FCF', etc.
+                        
+        step_transp = [];
     end
     
    
@@ -51,6 +53,20 @@ classdef one_step_st_system < handle
         q = q(:);
     end
     
+    %% Solve the transposed system by backward substitution, A'*q = b
+    function q = backward_solve(obj, b)
+        
+        assert(~isempty(obj.step_transp), 'step_transp property required to be set!')
+        
+        b = reshape(b, [obj.step_dimension, obj.nt]);
+        q = zeros(obj.step_dimension, obj.nt); 
+        q(:, obj.nt) = b(:, obj.nt); % Final condition.
+        for t0idx = obj.nt-1:-1:1
+            q(:, t0idx) = obj.step_transp(t0idx, q(:, t0idx+1)) + b(:, t0idx);
+        end
+        q = q(:);
+    end
+    
     %% Compute the action of A on some vector c: b = A(v)
     function c = system_action(obj, v)
         v = reshape(v, [obj.step_dimension, obj.nt]);
@@ -59,6 +75,19 @@ classdef one_step_st_system < handle
         c(:, 1) = v(:, 1);
         for tidx = 1:obj.nt-1
             c(:, tidx+1) = v(:, tidx+1) - obj.step(tidx, v(:, tidx)); % (A(q))_{n+1} = q_{n+1} - Phi(q_{n}).
+        end
+        
+        c = c(:);
+    end
+    
+    %% Compute the action of A' on some vector c: b = A'(v)
+    function c = system_transp_action(obj, v)
+        v = reshape(v, [obj.step_dimension, obj.nt]);
+        c = zeros(size(v));
+        
+        c(:, obj.nt) = v(:, obj.nt); % Final condition.
+        for tidx = obj.nt-1:-1:1
+            c(:, tidx) = v(:, tidx) - obj.step_transp(tidx, v(:, tidx+1)); % (A(q))_{n} = q_{n} - Phi'(q_{n+1}).
         end
         
         c = c(:);

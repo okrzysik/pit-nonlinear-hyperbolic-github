@@ -1,4 +1,4 @@
-In this directory we consider the solution of the scalar conservation law u_t + f(u)_x = 0, with possibly nonlinear flux function f.
+In this directory we consider the solution of the scalar conservation law u_t + f(u)_x = 0, with possibly nonlinear flux function f. This code is used for generating the numerical results in the paper `Parallel-in-time solution of scalar nonlinear conservation laws`
 
 * `cons_law_scalar.m`: Abstract class implementing PDE and its discretization. Specific PDEs implemented using this class are: 
     1. The linear conservation law:   f(u) = alpha(x, t)*u for some prescribed function alpha. See `cons_lin_scalar.m`

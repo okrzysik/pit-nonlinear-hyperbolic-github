@@ -1,12 +1,25 @@
-This project is about the parallel-in-time solution of (potentially nonlinear) hyperbolic PDEs. Everything is limited to one spatial dimension, and the problems use periodic boundary conditions in space. 
+This project is about the parallel-in-time solution of hyperbolic PDEs. Everything is limited to one spatial dimension, and the problems use periodic boundary conditions in space (at least in most cases).
 
-* `startup.m`: Run this to put everything in your MATLAB path (NOTE: this will also modify your MGRIT plotting settings, at least until you re-open MATLAB, so comment out that part of the code if you don't want this to happen)
+Presently, there are two papers associated with this repository:
+1. `Parallel-in-time solution of scalar nonlinear conservation laws` 
+    See arXiv:2401.04936
+    The code associated with this paper is in `scalar/`, as discussed below
+2. `Parallel-in-time solution of hyperbolic PDE systems via characteristic-variable block preconditioning`
+    The code associated with this paper is in `systems/`, as discussed below 
+  
 
-* `MGRIT/`: Implementation of the multigrid reduction-in-time algorithm.
+Before running any of the examples in the directories described below, run `startup.m` to put everything in your MATLAB path and to configure your plotting settings. 
 
+The two main directories in this repository are:
 * `scalar/`: Considers the scalar PDE u_t + f(u)_x = 0 where f(u) is the (potentially nonlinear) flux function. There are several examples, including:
     1. Linear conservation law:         f(u) = alpha(x,t)
     2. The Burgers equation:            f(u) = u^2/2
     3. The Buckley--Leverett equation:  f(u) = 4u^2 / (4u^2 + (1-u)^2)
+    
+* `systems/`: Considers PDE systems including:
+    1. The acoustic equations q_t + A(x)q_x = 0 -- a linear, non-conservative system in 2 variables
+    2. The general nonlinear conservation law q_t +  f(q)_x = 0 -- examples include the shallow water equations and the Euler equations of gas dynamics
 
+Additional information:
+* `MGRIT/`: Implementation of the multigrid reduction-in-time algorithm.
 * `utils/`: Various pieces of code for doing helpful things.

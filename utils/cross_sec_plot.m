@@ -2,8 +2,18 @@ function cs_fig = cross_sec_plot(figno, data, label, pa)
     
     t = pa.mesh_pa.t;
     tmax = t(end);
-    num_cross_sec = 5; % Number of cross sections to plot
-    t_plot_times = [0:tmax/(num_cross_sec - 1):tmax];
+    
+    % Number of cross sections to plot
+    if isfield(pa, 'num_cross_sec')
+        num_cross_sec = pa.num_cross_sec; 
+    else
+        num_cross_sec = 5; 
+    end 
+    if num_cross_sec == 1
+        t_plot_times = tmax;
+    else
+        t_plot_times = [0:tmax/(num_cross_sec - 1):tmax];
+    end
 
     % Line styles
     ls = {"-"; "--"; ":"; "-."};
@@ -19,7 +29,7 @@ function cs_fig = cross_sec_plot(figno, data, label, pa)
 
         nameval = lineprops(t_plot_idx);
         % h
-        cs_fig = figure(figno+5);
+        cs_fig = figure(figno);
         plot(pa.mesh_pa.x_centers, data(:, t_idx), ...
             nameval{:}, ...
             'Marker', 'None', ...

@@ -22,7 +22,7 @@ pde_pa.mat_param_id = 2;
 %pde_pa.mat_param_id = 3;
 %pde_pa.mat_param_id = 4;
 %pde_pa.mat_param_id = 5;
-%pde_pa.mat_param_id = 6;
+pde_pa.mat_param_id = 6;
 
 pde_pa.mat_param_num_layers = 16;
 

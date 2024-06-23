@@ -75,7 +75,7 @@ function [s11, s12, s21, s22] = stencil_coefficients(dt, h, c, Z, nx)
             right = 1;
         end
 
-        % spp: p connections to p
+        % 11: 1 connections to 1
         % -1 coefficient
         s11(i, 1) =   0;
         % 0 coefficient
@@ -83,7 +83,7 @@ function [s11, s12, s21, s22] = stencil_coefficients(dt, h, c, Z, nx)
         % 1 coefficient
         s11(i, 3) =   - dt/h * c(i) .* -2*(Z(right)./(Z(i) + Z(right)));
 
-        % spu: p connections to u
+        % 12: 1 connections to 2
         % -1 coefficient
         s12(i, 1) =   0;
         % 0 coefficient
@@ -92,7 +92,7 @@ function [s11, s12, s21, s22] = stencil_coefficients(dt, h, c, Z, nx)
         s12(i, 3) =   0;
 
 
-        % sup: u connections to p
+        % 21: 2 connections to 1
         % -1 coefficient
         s21(i, 1) =   0;
         % 0 coefficient
@@ -100,7 +100,7 @@ function [s11, s12, s21, s22] = stencil_coefficients(dt, h, c, Z, nx)
         % 1 coefficient
         s21(i, 3) =   0;
 
-        % suu: u connections to u
+        % 22: 2 connections to 2
         % -1 coefficient
         s22(i, 1) =   - dt/h * c(i) .* ( -2*Z(left)./(Z(left) + Z(i))  );
         % 0 coefficient

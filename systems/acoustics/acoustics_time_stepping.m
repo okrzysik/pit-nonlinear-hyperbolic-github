@@ -20,20 +20,20 @@ figno = 19;
 save_figs = ~true;
 fig_dir  = 'figures/paper/time-stepping/'; 
 
-plot_contours       = ~true;
+plot_contours       = true;
 plot_cross_sec      = true; pa.num_cross_sec = 3;
 plot_material_param = true;
 
 %% PDE and disc parameters
-nx_array = 2.^(10);
+nx_array = 2.^(11);
 
 disc_pa.high_res = ~true; % Apply high-res corrections to disc or not.
 
-pde_pa.mat_param_id = 0; % c = Z = 1.
+%pde_pa.mat_param_id = 0; % c = Z = 1.
 pde_pa.mat_param_id = 1; % Bale et al. example 1.
 pde_pa.mat_param_id = 2; % Bale et al. example 2.
 pde_pa.mat_param_id = 3; % Bale et al. example 3.
-%pde_pa.mat_param_id = 4; % Z and c are 1, and jump to 2 and 0.5, respectively.
+pde_pa.mat_param_id = 4; % Z and c are 1, and jump to 2 and 0.5, respectively.
 pde_pa.mat_param_id = 5; % Periodically layered medium
 pde_pa.mat_param_id = 6; % Randomly layered medium
 
@@ -41,7 +41,7 @@ pde_pa.mat_param_id = 6; % Randomly layered medium
 pde_pa.mat_param_num_layers = 16; 
 %pde_pa.mat_param_homogenize = ~true;
 
-mesh_pa.tmax       = 0.5;
+mesh_pa.tmax       = 1;
 % % tmax's for examples in Bale et al.
 % mesh_pa.tmax       = 0.4; % For ex. 1
 % mesh_pa.tmax       = 0.4; % For ex. 2

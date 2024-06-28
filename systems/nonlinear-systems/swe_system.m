@@ -392,7 +392,7 @@ classdef swe_system < cons_law_system
 
         if strcmp(obj.pde_pa.ic_id, 'idp1')
             beta = 5;
-            h = 1 + obj.pde_pa.ic_epsilon*exp(-beta * x.^2);
+            h = 1 + obj.pde_pa.ic_epsilon*exp(-beta * (x-2.5).^2);
             u = zeros(size(x));
 
             ic_description = sprintf('idp1-eps%.2f', obj.pde_pa.ic_epsilon);

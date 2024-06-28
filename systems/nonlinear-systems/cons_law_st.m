@@ -48,14 +48,14 @@ linearized_solver = 'block-prec'; % Approximately using a block preconditioner
 prec = struct();
 if strcmp(linearized_solver, 'block-prec')
     prec.blocks = 'exact';
-    prec.blocks = 'approx';
+    %prec.blocks = 'approx';
     
     prec.type = 'lower'; % Block lower triangular
     prec.type = 'diag';  % Block diagonal
     
     % If using approximate diagonal blocks in the linearized problem, how should they be inverted?
     prec.diag_solves = 'direct';
-    prec.diag_solves = 'MGRIT';
+    %prec.diag_solves = 'MGRIT';
 end
 
 
@@ -73,15 +73,14 @@ pde_pa.pde_id = 'shallow-water';
 pde_pa.ic_id = 'idp1'; 
 pde_pa.bcs = 'periodic';
 
-%pde_pa.ic_epsilon = 0.05; 
-
-pde_pa.ic_epsilon = 0.1; % Only weak shocks form here.
+% Small amplitude problem
+pde_pa.ic_epsilon = 0.1; % weak shocks form
 prec.maxit = 1;
 
-% pde_pa.ic_epsilon = 0.6; % Shocks form.
+% % Larger-amplitude problem
+% pde_pa.ic_epsilon = 0.6; % shocks form.
 % prec.maxit = 1;
 % prec.maxit = 2;
-% % prec.maxit = 3;
 
 mesh_pa.xmin = -5;
 mesh_pa.xmax =  5;
@@ -110,17 +109,18 @@ mesh_pa.tmax = 10;
 % pde_pa.pde_id = 'shallow-water';
 % pde_pa.ic_id  = 'dam-break'; 
 % pde_pa.bcs    = 'constant';
-% 
+
+% % Small-amplitude problem
 % pde_pa.ic_epsilon = 0.1;
 % prec.maxit = 1;
-% 
-% % pde_pa.ic_epsilon = 2;
-% % prec.maxit = 1;
-% % %prec.maxit = 2;
+
+% % Larger-amplitude problem 
+% pde_pa.ic_epsilon = 2;
+% prec.maxit = 1;
+% % prec.maxit = 2;
 % % prec.maxit = 3;
 % % prec.maxit = 4;
-% 
-% 
+
 % mesh_pa.xmin = -10;
 % mesh_pa.xmax =  10;
 % disc_pa.CFL_number = 0.7; % max-wave-speed * dt/h
@@ -130,15 +130,17 @@ mesh_pa.tmax = 10;
 %% Euler: Smooth initial perturbation
 % pde_pa.pde_id = 'euler'; 
 % pde_pa.ic_id = 'idp1'; 
-% 
-% pde_pa.ic_epsilon = 0.2;
+
+% % Small-amplitude problem 
+% pde_pa.ic_epsilon = 0.2; % weak shocks form
 % prec.maxit = 1;
-% 
-% pde_pa.ic_epsilon = 1.2;
-% prec.maxit = 1;
+
+% % Larger-amplitude problem
+% pde_pa.ic_epsilon = 1.2; % shocks form
+% % prec.maxit = 1;
 % % prec.maxit = 2;
-% % prec.maxit = 3;
-% 
+% prec.maxit = 3;
+
 % mesh_pa.xmin = -5;
 % mesh_pa.xmax =  5;
 % disc_pa.CFL_number = 0.7; % max-wave-speed * dt/h
@@ -154,17 +156,17 @@ mesh_pa.tmax = 10;
 % disc_pa.CFL_number = 0.45; % max-wave-speed * dt/h
 % mesh_pa.tmax = 0.25;
 % pde_pa.bcs = 'constant';
-% 
-% 
+
+% % Small-amplitude problem
 % pde_pa.ic_epsilon = 0.125; % Weakly nonlinear shock tube problem
 % prec.maxit = 1;
-% 
-% 
+
+% % Larger-amplitude problem
 % pde_pa.ic_epsilon = 0.875; % This is the original Sod problem
 % prec.maxit = 2;
 % % prec.maxit = 3;
 % prec.maxit = 4;
-% prec.maxit = 5;
+% % prec.maxit = 5;
 
 
 %% Nonlinear iteration and linearization parameters
@@ -264,7 +266,7 @@ elseif strcmp(linearized_solver, 'block-prec')
     end
 
     if strcmp(prec.diag_solves, 'MGRIT') 
-        plot_pa.ls = '-.';
+        plot_pa.ls = '--';
     end
 end
 
@@ -572,10 +574,18 @@ else
     if strcmp(linearized_solver, 'block-prec')
         % block-prec-exact-blocks  -> \wh{\cal P}
         if strcmp(prec.blocks, 'exact')
-            res_fig_title = strcat('residual history: $\widehat{\mathcal{P}}$', sprintf('(%d)', prec.maxit));
+            if strcmp(prec.type, 'diag')
+                res_fig_title = strcat('residual history: $\widehat{\mathcal{P}}_D$', sprintf('(%d)', prec.maxit));
+            elseif strcmp(prec.type, 'lower')
+                res_fig_title = strcat('residual history: $\widehat{\mathcal{P}}_L$', sprintf('(%d)', prec.maxit));
+            end
         % block-prec-approx-blocks -> \wt{\cal P}
         elseif strcmp(prec.blocks, 'approx')
-            res_fig_title = strcat('residual history: $\widetilde{\mathcal{P}}$', sprintf('(%d)', prec.maxit));
+            if strcmp(prec.type, 'diag')
+                res_fig_title = strcat('residual history: $\widetilde{\mathcal{P}}_D$', sprintf('(%d)', prec.maxit));
+            elseif strcmp(prec.type, 'lower')
+                res_fig_title = strcat('residual history: $\widetilde{\mathcal{P}}_L$', sprintf('(%d)', prec.maxit));
+            end
         end
     end
     title(res_fig_title);

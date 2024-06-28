@@ -8,26 +8,18 @@ clc
 clear 
 close all 
 
-save_fig = true;
+save_fig = ~true;
 
-%upper_xlim = 20;
-
-% Merge plots 
+% Merge plots that live in the following directory:
+%% SWE plots
 %open_fig_dir = '../figures/paper/SWE/idp1/';
-open_fig_dir = '../figures/paper/SWE/dam-break/';
-
+%open_fig_dir = '../figures/paper/SWE/dam-break/';
+%% Euler plots
 %open_fig_dir = '../figures/paper/euler/idp1/';
-%open_fig_dir = '../figures/paper/euler/sod/';
+open_fig_dir = '../figures/paper/euler/sod/';
 
 
-
-
-%res-SWE-idp1-eps0.10-bpeb-diag-it1
-
-% %suf_fig3 = '-F(8)-MGRIT-F(8)-NONE-2'; % An example where there's no truncation correction
-% open_fig_dir = '../figures/paper/inexact/';
-
-% Manyally choose legend location
+% Manually choose legend location
 %leg_loc = 'SouthWest';
 leg_loc = 'NorthEast';
 

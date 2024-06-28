@@ -16,10 +16,11 @@ Figures 3, 4, 5, 6 from the paper as well as all figures in the supplementary ma
 
 * prec.type: Soecifies whether diagonal or triangular based block preconditioners are used 
 
-* `PDE, domain and initial condition parameters` These blocks of code specify the PDE, domain, and initial condition. Just uncomment the one that you want to run.
+* `PDE, domain and initial condition parameters` These blocks of code specify the PDE, domain, and initial condition. Just uncomment the one that you want to run, ensuring all others are commented out.
 
 *  `MGRIT parameters for space-time linear advection solves`: This block of code sets up the parameters for MGRIT. To reproduce the figures from the paper ensure the same settings are used as described there. 
     
+Note: Running `cons_law_st.m` with appropriately configured settings will generate one family of curves shown in the plots in the paper. Multiple families of curves can be overlaid on the same figure, as in the paper, by running 'utils/merge_and_save_figs.m' if each of the underlying plots have been saved. 
     
 A description of the main scripts and directories is as follows:
 * `cons_law_time_stepping.m` solves the conservation law by sequential time-stepping. This is the most basic script.

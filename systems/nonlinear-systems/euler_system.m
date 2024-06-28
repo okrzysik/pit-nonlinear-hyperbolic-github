@@ -494,7 +494,7 @@ classdef euler_system < cons_law_system
             
         elseif strcmp(obj.pde_pa.ic_id, 'idp1')
             beta = 5;
-            rho = 1 + obj.pde_pa.ic_epsilon*exp(-beta * x.^2);
+            rho = 1 + obj.pde_pa.ic_epsilon*exp(-beta * (x-2.5).^2);
             
             
             % change back to p = rho... and u = 0.

@@ -1,10 +1,10 @@
 This project is about the parallel-in-time solution of hyperbolic PDEs. Everything is limited to one spatial dimension, and the problems use periodic boundary conditions in space (at least in most cases).
 
 Presently, there are two papers associated with this repository:
-1. `Parallel-in-time solution of scalar nonlinear conservation laws` 
+1. `Parallel-in-time solution of scalar nonlinear conservation laws` by H. De Sterck, R. D. Falgout, O. A. Krzysik, J. B. Schroder
     See arXiv:2401.04936
     The code associated with this paper is in `scalar/`, as discussed below
-2. `Parallel-in-time solution of hyperbolic PDE systems via characteristic-variable block preconditioning`
+2. `Parallel-in-time solution of hyperbolic PDE systems via characteristic-variable block preconditioning` by H. De Sterck, R. D. Falgout, O. A. Krzysik, J. B. Schroder
     The code associated with this paper is in `systems/`, as discussed below 
   
 

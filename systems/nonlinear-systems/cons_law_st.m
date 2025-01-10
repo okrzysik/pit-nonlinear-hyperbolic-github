@@ -32,6 +32,13 @@
 % boundaries in space. 
 
 
+% NOTES:
+%   -Certain figures in the paper have several different sets of results
+%   overlaid on top of one another. The results for each different test
+%   were generated individually (with the .fig files being saved) and then 
+%   the plots merged using the file "utils/merge_and_save_figs.m"
+
+
 tmp = matlab.desktop.editor.getActive;
 cd(fileparts(tmp.Filename));
 
@@ -47,10 +54,10 @@ linearized_solver = 'block-prec'; % Approximately using a block preconditioner
 % Further options for block preconditioner. 
 prec = struct();
 if strcmp(linearized_solver, 'block-prec')
-    prec.blocks = 'exact';
-    %prec.blocks = 'approx';
+    prec.blocks = 'exact';  % Hatted prec.
+    %prec.blocks = 'approx'; % Tilde prec.
     
-    prec.type = 'lower'; % Block lower triangular
+    %prec.type = 'lower'; % Block lower triangular
     prec.type = 'diag';  % Block diagonal
     
     % If using approximate diagonal blocks in the linearized problem, how should they be inverted?
@@ -67,80 +74,43 @@ nx_array = 2.^(6:11);
 disc_pa.num_flux_id = 'ROE'; disc_pa.delta_smoothing_parameter = 1e-6;
 
 
+%% Figures 3 and 4
 %% PDE, domain and initial condition parameters
-%% SWE: Initial depth perturbation with Gaussian of size epsilon
-pde_pa.pde_id = 'shallow-water';
-pde_pa.ic_id = 'idp1'; 
-pde_pa.bcs = 'periodic';
-
-% Small amplitude problem
-pde_pa.ic_epsilon = 0.1; % weak shocks form
-prec.maxit = 1;
-
-% % Larger-amplitude problem
-% pde_pa.ic_epsilon = 0.6; % shocks form.
-% prec.maxit = 1;
-% prec.maxit = 2;
-
-mesh_pa.xmin = -5;
-mesh_pa.xmax =  5;
-disc_pa.CFL_number = 0.8; % max-wave-speed * dt/h
-mesh_pa.tmax = 10;
-
-
-%% SWE: Initial cosine pert to h
+%% SWE: Initial depth perturbation with Gaussian of size epsilon.
 % pde_pa.pde_id = 'shallow-water';
-% pde_pa.ic_id = 'idp2'; 
+% pde_pa.ic_id = 'idp1'; 
+% pde_pa.bcs = 'periodic';
+% 
+% % % Figure 3: Small amplitude problem. 
+% % pde_pa.ic_epsilon = 0.1; % weak shocks form
+% % prec.maxit = 1;
+% 
+% % Figure 4: Larger-amplitude problem. 
+% pde_pa.ic_epsilon = 0.6; % shocks form.
+% %prec.maxit = 1;
+% prec.maxit = 2;
 % 
 % mesh_pa.xmin = -5;
 % mesh_pa.xmax =  5;
 % disc_pa.CFL_number = 0.8; % max-wave-speed * dt/h
 % mesh_pa.tmax = 10;
-% 
-% prec.maxit = 1;
-% pde_pa.ic_epsilon = 0.2; % Shocks don't form, but there is steepening
-% 
-% prec.maxit = 3;
-% pde_pa.ic_epsilon = 0.6; % 3 iters with best prec is almost scalable.
 
 
-%% SWE: Dam break problem: h0 has a jump of height eps.
-% eps = 2 is the usual dam break problem from LeVeque p. 259
-% pde_pa.pde_id = 'shallow-water';
-% pde_pa.ic_id  = 'dam-break'; 
-% pde_pa.bcs    = 'constant';
-
-% % Small-amplitude problem
-% pde_pa.ic_epsilon = 0.1;
-% prec.maxit = 1;
-
-% % Larger-amplitude problem 
-% pde_pa.ic_epsilon = 2;
-% prec.maxit = 1;
-% % prec.maxit = 2;
-% % prec.maxit = 3;
-% % prec.maxit = 4;
-
-% mesh_pa.xmin = -10;
-% mesh_pa.xmax =  10;
-% disc_pa.CFL_number = 0.7; % max-wave-speed * dt/h
-% mesh_pa.tmax = 5;
-
-
+%% Figures 5 and 6
 %% Euler: Smooth initial perturbation
 % pde_pa.pde_id = 'euler'; 
 % pde_pa.ic_id = 'idp1'; 
-
-% % Small-amplitude problem 
-% pde_pa.ic_epsilon = 0.2; % weak shocks form
-% prec.maxit = 1;
-
-% % Larger-amplitude problem
+% 
+% % % Figure 5: Small-amplitude problem. 
+% % pde_pa.ic_epsilon = 0.2; % weak shocks form
+% % prec.maxit = 1;
+% 
+% % Figure 6: Larger-amplitude problem.
 % pde_pa.ic_epsilon = 1.2; % shocks form
 % % prec.maxit = 1;
-% % prec.maxit = 2;
+% prec.maxit = 2;
 % prec.maxit = 3;
-
+% 
 % mesh_pa.xmin = -5;
 % mesh_pa.xmax =  5;
 % disc_pa.CFL_number = 0.7; % max-wave-speed * dt/h
@@ -148,6 +118,32 @@ mesh_pa.tmax = 10;
 % pde_pa.bcs = 'periodic';
 
 
+%% SM Figures 2 and 3
+%% SWE: Dam break problem: h0 has a jump of height eps.
+% eps = 2 is the usual dam break problem from LeVeque p. 259
+% pde_pa.pde_id = 'shallow-water';
+% pde_pa.ic_id  = 'dam-break'; 
+% pde_pa.bcs    = 'constant';
+% 
+% % % Figure SM 2
+% % % Small-amplitude problem
+% % pde_pa.ic_epsilon = 0.1;
+% % prec.maxit = 1;
+% 
+% % Figure SM 3
+% % Larger-amplitude problem 
+% pde_pa.ic_epsilon = 2;
+% prec.maxit = 1;
+% prec.maxit = 3;
+% prec.maxit = 4;
+% 
+% mesh_pa.xmin = -10;
+% mesh_pa.xmax =  10;
+% disc_pa.CFL_number = 0.7; % max-wave-speed * dt/h
+% mesh_pa.tmax = 5;
+
+
+%% SM Figures 4 and 5
 %% Euler: Sod problem
 % pde_pa.pde_id = 'euler'; 
 % pde_pa.ic_id = 'sod'; 
@@ -156,17 +152,15 @@ mesh_pa.tmax = 10;
 % disc_pa.CFL_number = 0.45; % max-wave-speed * dt/h
 % mesh_pa.tmax = 0.25;
 % pde_pa.bcs = 'constant';
-
-% % Small-amplitude problem
-% pde_pa.ic_epsilon = 0.125; % Weakly nonlinear shock tube problem
-% prec.maxit = 1;
-
-% % Larger-amplitude problem
+% 
+% % % % Figure SM 4: Small-amplitude problem
+% % pde_pa.ic_epsilon = 0.125; % Weakly nonlinear shock tube problem
+% % prec.maxit = 1;
+% 
+% % Figure SM 4: Larger-amplitude problem
 % pde_pa.ic_epsilon = 0.875; % This is the original Sod problem
 % prec.maxit = 2;
-% % prec.maxit = 3;
 % prec.maxit = 4;
-% % prec.maxit = 5;
 
 
 %% Nonlinear iteration and linearization parameters
@@ -523,7 +517,8 @@ for nx_idx = 1:numel(nx_array)
     elseif resnorm == 2
         resnorm_array = resnorm_array * sqrt(mesh_pa.h*mesh_pa.dt);
     end
-    displayname = sprintf('$(n_x,n_t)=(%d,%d)$', mesh_pa.nx, mesh_pa.nt);
+    %displayname = sprintf('$(n_x,n_t)=(%d,%d)$', mesh_pa.nx, mesh_pa.nt);
+    displayname = sprintf('$%d \\times %d$', mesh_pa.nx, mesh_pa.nt);
     semilogy(0:numel(resnorm_array)-1, resnorm_array/resnorm_array(1), nameval{:}, ...
         'LineWidth', 2, ...
         'DisplayName', displayname)

@@ -16,107 +16,132 @@ save_fig = ~true;
 %open_fig_dir = '../figures/paper/SWE/dam-break/';
 %% Euler plots
 %open_fig_dir = '../figures/paper/euler/idp1/';
-open_fig_dir = '../figures/paper/euler/sod/';
+%open_fig_dir = '../figures/paper/euler/sod/';
 
 
 % Manually choose legend location
 %leg_loc = 'SouthWest';
 leg_loc = 'NorthEast';
 
-%% SWE, IDP small eps
+%% SWE, IDP small eps. Figure 3.
+% Fig 3, bottom left
 % suf_new_fig = '-bpeb-diag-it1';
-% suf_fig1 = '-direct';
-% suf_fig2 = '-bpeb-diag-it1';
-% pref = 'res-SWE-idp1-eps0.10'; show_y_label = true;  show_legend = true; 
+% suf_fig1    = '-direct';
+% suf_fig2    = '-bpeb-diag-it1';
+% pref        = 'res-SWE-idp1-eps0.10'; show_y_label = true;  show_legend = true; 
 
+% % Fig 3, bottom right
 % suf_new_fig = '-bpap-diag-it1';
-% suf_fig1 = '-bpab-MGRIT-diag-it1';
-% suf_fig2 = '-bpab-diag-it1';
-% pref = 'res-SWE-idp1-eps0.10'; show_y_label = true;  show_legend = true; 
+% suf_fig1    = '-bpab-MGRIT-diag-it1';
+% suf_fig2    = '-bpab-diag-it1';
+% pref        = 'res-SWE-idp1-eps0.10'; show_y_label = true;  show_legend = true; 
 
-%% SWE, IDP big eps
+
+%% SWE, IDP big eps. Figure 4.
+% % Fig 4, bottom left
 % suf_new_fig = '-bpeb-diag-it1';
-% suf_fig1 = '-direct';
-% suf_fig2 = '-bpeb-diag-it1';
-% pref = 'res-SWE-idp1-eps0.60'; show_y_label = true;  show_legend = true; 
+% suf_fig1    = '-direct';
+% suf_fig2    = '-bpeb-diag-it1';
+% pref        = 'res-SWE-idp1-eps0.60'; show_y_label = true;  show_legend = true; 
 
+% % Fig 4, bottom middle
 % suf_new_fig = '-bpeb-diag-it2';
 % suf_fig1 = '-direct';
 % suf_fig2 = '-bpeb-diag-it2';
 % pref = 'res-SWE-idp1-eps0.60'; show_y_label = true;  show_legend = true; 
 
+% Fig 4, bottom right
 % suf_new_fig = '-bpap-diag-it2';
 % suf_fig1 = '-bpab-MGRIT-diag-it2';
 % suf_fig2 = '-bpab-diag-it2';
 % pref = 'res-SWE-idp1-eps0.60'; show_y_label = true;  show_legend = true; 
 
-%% SWE, DB small eps
-% suf_new_fig = '-bpeb-diag-it1';
-% suf_fig1 = '-direct';
-% suf_fig2 = '-bpeb-diag-it1';
-% pref = 'res-SWE-dam-break-eps0.10'; show_y_label = true;  show_legend = true; 
 
-%% SWE, DB big eps
-% suf_new_fig = '-bpeb-diag-it1';
-% suf_fig1 = '-direct';
-% suf_fig2 = '-bpeb-diag-it1';
-% pref = 'res-SWE-dam-break-eps2.00'; show_y_label = true;  show_legend = true; 
-
-% suf_new_fig = '-bpeb-diag-it3';
-% suf_fig1 = '-direct';
-% suf_fig2 = '-bpeb-diag-it3';
-% pref = 'res-SWE-dam-break-eps2.00'; show_y_label = true;  show_legend = true;  
-
-% suf_new_fig = '-bpab-diag-it4';
-% suf_fig1 = '-direct';
-% suf_fig2 = '-bpab-diag-it4';
-% pref = 'res-SWE-dam-break-eps2.00'; show_y_label = true;  show_legend = true; 
-
-%% Euler, IDP small eps
+%% Euler, IDP small eps. Figure 5
+% % Fig 5, bottom left
 % suf_new_fig = '-bpeb-diag-it1';
 % suf_fig1 = '-direct';
 % suf_fig2 = '-bpeb-diag-it1';
 % pref = 'res-euler-idp1-eps0.20'; show_y_label = true;  show_legend = true; 
 
+% % Fig 5, bottom right
 % suf_new_fig = '-bpab-diag-it1';
 % suf_fig1 = '-bpab-MGRIT-diag-it1';
 % suf_fig2 = '-bpab-diag-it1';
 % pref = 'res-euler-idp1-eps0.20'; show_y_label = true;  show_legend = true; 
 
-%% Euler, IDP big eps
+
+%% Euler, IDP big eps. Figure 6
+% % Fig 5, bottom left
 % suf_new_fig = '-bpeb-diag-it2';
 % suf_fig1 = '-direct';
 % suf_fig2 = '-bpeb-diag-it2';
 % pref = 'res-euler-idp1-eps1.20'; show_y_label = true;  show_legend = true; 
 
+% % Fig 5, bottom middle
 % suf_new_fig = '-bpeb-diag-it3';
 % suf_fig1 = '-direct';
 % suf_fig2 = '-bpeb-diag-it3';
 % pref = 'res-euler-idp1-eps1.20'; show_y_label = true;  show_legend = true; 
 
+% % Fig 5, bottom right
 % suf_new_fig = '-bpab-diag-it3';
 % suf_fig1 = '-bpab-MGRIT-diag-it3';
 % suf_fig2 = '-bpab-diag-it3';
 % pref = 'res-euler-idp1-eps1.20'; show_y_label = true;  show_legend = true; 
 
 
-%% Euler, Sod small eps
+%% SWE, DB small eps. SM Figure 2
+% % Fig SM 2, bottom left
+% suf_new_fig = '-bpeb-diag-it1';
+% suf_fig1 = '-direct';
+% suf_fig2 = '-bpeb-diag-it1';
+% pref = 'res-SWE-dam-break-eps0.10'; show_y_label = true;  show_legend = true; 
+
+% % Fig SM 2, bottom right
+% % This figure doesn't merge anything.
+
+%% SWE, DB big eps. SM Figure 3
+% % Fig SM 3, bottom left
+% suf_new_fig = '-bpeb-diag-it1';
+% suf_fig1 = '-direct';
+% suf_fig2 = '-bpeb-diag-it1';
+% pref = 'res-SWE-dam-break-eps2.00'; show_y_label = true;  show_legend = true; 
+% 
+% % Fig SM 2, bottom middle
+% suf_new_fig = '-bpeb-diag-it3';
+% suf_fig1 = '-direct';
+% suf_fig2 = '-bpeb-diag-it3';
+% pref = 'res-SWE-dam-break-eps2.00'; show_y_label = true;  show_legend = true;  
+
+% % Fig SM 2, bottom right
+% suf_new_fig = '-bpab-diag-it4';
+% suf_fig1 = '-direct';
+% suf_fig2 = '-bpab-diag-it4';
+% pref = 'res-SWE-dam-break-eps2.00'; show_y_label = true;  show_legend = true; 
+
+
+%% Euler, Sod small eps. SM Figure 4.
+% % SM Fig 4, bottom left.
 % suf_new_fig = '-bpeb-diag-it1';
 % suf_fig1 = '-direct';
 % suf_fig2 = '-bpeb-diag-it1';
 % pref = 'res-euler-sod-eps0.12'; show_y_label = true;  show_legend = true; 
 
-% suf_new_fig = '-bpeb-diag-it1';
+% % SM Fig 4, bottom right.
+% suf_new_fig = '-bpab-diag-it1';
 % suf_fig1 = '-direct';
-% suf_fig2 = '-bpeb-diag-it1';
+% suf_fig2 = '-bpab-diag-it1';
 % pref = 'res-euler-sod-eps0.12'; show_y_label = true;  show_legend = true; 
 
-%% Euler, Sod big eps
-% suf_new_fig = '-bpeb-diag-it2';
-% suf_fig1 = '-direct';
-% suf_fig2 = '-bpeb-diag-it2';
-% pref = 'res-euler-sod-eps0.88'; show_y_label = true;  show_legend = true; 
+%% Euler, Sod big eps. SM Figure 5.
+% SM Fig 5, bottom left.
+suf_new_fig = '-bpeb-diag-it2';
+suf_fig1 = '-direct';
+suf_fig2 = '-bpeb-diag-it2';
+pref = 'res-euler-sod-eps0.88'; show_y_label = true;  show_legend = true; 
 
+% % SM Fig 5, bottom left.
 % suf_new_fig = '-bpeb-diag-it4';
 % suf_fig1 = '-direct';
 % suf_fig2 = '-bpeb-diag-it4';

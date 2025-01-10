@@ -5,6 +5,7 @@ Presently, there are two papers associated with this repository:
     See arXiv:2401.04936
     The code associated with this paper is in `scalar/`, as discussed below
 2. `Parallel-in-time solution of hyperbolic PDE systems via characteristic-variable block preconditioning` by H. De Sterck, R. D. Falgout, O. A. Krzysik, J. B. Schroder
+    See arXiv:2407.03873
     The code associated with this paper is in `systems/`, as discussed below 
   
 

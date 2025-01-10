@@ -27,15 +27,15 @@ plot_material_param = true;
 %% PDE and disc parameters
 nx_array = 2.^(11);
 
-disc_pa.high_res = ~true; % Apply high-res corrections to disc or not.
+disc_pa.high_res = true; % Apply high-res corrections to disc or not.
 
 %pde_pa.mat_param_id = 0; % c = Z = 1.
-pde_pa.mat_param_id = 1; % Bale et al. example 1.
-pde_pa.mat_param_id = 2; % Bale et al. example 2.
-pde_pa.mat_param_id = 3; % Bale et al. example 3.
-pde_pa.mat_param_id = 4; % Z and c are 1, and jump to 2 and 0.5, respectively.
-pde_pa.mat_param_id = 5; % Periodically layered medium
-pde_pa.mat_param_id = 6; % Randomly layered medium
+%pde_pa.mat_param_id = 1; % Bale et al. example 1.
+%pde_pa.mat_param_id = 2; % Bale et al. example 2.
+%pde_pa.mat_param_id = 3; % Bale et al. example 3.
+%pde_pa.mat_param_id = 4; % Z and c are 1, and jump to 2 and 0.5, respectively.
+%pde_pa.mat_param_id = 5; % Periodically layered medium
+%pde_pa.mat_param_id = 6; % Randomly layered medium
 
 % Extra parameters for layered media:
 pde_pa.mat_param_num_layers = 16; 
